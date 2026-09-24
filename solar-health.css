@@ -1,0 +1,95 @@
+/* Solar Health page — scoped additions only. Colors/spacing reuse the
+   tokens already defined in style.css (--navy, --blue, --green, --yellow,
+   --red, --line, --bg) so this page matches the Home Page design system. */
+
+.sh-row1{grid-template-columns:610fr 490fr}
+.sh-row2{grid-template-columns:1fr 1fr 1fr}
+
+/* ----- Notification dropdown ----- */
+.sh-notif-wrap{position:relative}
+.sh-notif-panel{position:absolute;top:56px;right:0;width:300px;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 10px 28px rgba(20,60,120,.18);padding:14px;z-index:15}
+.sh-notif-panel[hidden]{display:none}
+.sh-notif-panel b{display:block;margin-bottom:8px;font-size:14px}
+.sh-notif-item{display:flex;gap:8px;padding:8px 6px;border-radius:8px;font-size:12px;line-height:1.5}
+.sh-notif-item:hover{background:#f1f6fb}
+.sh-notif-item span{font-size:16px}
+
+/* ----- Summary card ----- */
+.sh-date{font-size:12px;color:#5a75a0;font-weight:500}
+.sh-summary-body{display:flex;gap:26px;align-items:center;margin-top:14px}
+.ring-in .sh-of100{font-size:14px;color:#6a86ae;margin-top:-4px}
+.sh-metrics{flex:1;display:flex;flex-direction:column;gap:14px}
+.sh-metric-row{display:flex;gap:12px;align-items:center}
+.sh-m-icon{width:40px;height:40px;border-radius:10px;display:grid;place-items:center;font-size:19px;flex:none}
+.sh-m-info{flex:1}
+.sh-m-info b{font-size:13px;font-weight:600}
+.sh-m-info span{float:right;font-size:12.5px;font-weight:500;color:#3b5c8f}
+.sh-bar{clear:both;height:7px;border-radius:5px;background:#eef2f8;margin-top:6px;overflow:hidden}
+.sh-bar-fill{height:100%;border-radius:5px;width:0;transition:width .4s}
+.sh-summary-msg{margin-top:16px;font-size:14px;color:#1b4fb0}
+.sh-status-line{margin-top:4px;font-size:12px;color:#5a75a0}
+
+/* ----- Weekly chart ----- */
+.sh-chart-card .ch{flex-direction:column;align-items:flex-start;gap:10px}
+.sh-chart-card h2{display:flex;align-items:center;gap:8px;font-size:17px}
+.sh-runner{font-size:20px}
+.sh-tabs{display:flex;gap:6px}
+.sh-tabs button{font-size:12px;padding:7px 12px;border-radius:8px;color:#3b5c8f;background:#eef2f8;transition:background .2s,color .2s}
+.sh-tabs button.on{background:var(--blue);color:#fff}
+.sh-bars{display:flex;align-items:flex-end;gap:14px;height:190px;margin-top:18px;padding:0 4px}
+.sh-bar-col{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;gap:8px}
+.sh-bar-col .stem{width:60%;border-radius:6px 6px 0 0;background:linear-gradient(180deg,#3fb87a,#1a7fd0);transition:height .4s}
+.sh-bar-col span{font-size:11px;color:#5a75a0}
+.sh-demo-label{font-size:11px;color:#8095b5;margin-top:8px}
+
+/* ----- Goals ----- */
+.sh-pill-btn{border:1px solid var(--line);border-radius:20px;padding:6px 14px;font-size:12px;font-weight:500;color:var(--blue);transition:background .2s}
+.sh-pill-btn:hover{background:#eef4fc}
+.sh-goals .ch,.sh-insights .ch,.sh-tips .ch{justify-content:space-between}
+.sh-goals h2,.sh-insights h2,.sh-tips h2{display:flex;align-items:center;gap:8px;font-size:16px}
+.sh-goal-row{display:flex;align-items:center;gap:12px;margin-top:16px}
+.sh-goal-ic{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;font-size:17px;flex:none}
+.sh-goal-info{flex:1}
+.sh-goal-info b{font-size:12.5px;font-weight:600}
+.sh-goal-info span{float:right;font-size:12px;color:#3b5c8f}
+.sh-goal-pct{width:34px;text-align:right;font-size:12px;font-weight:600;color:#3b5c8f}
+.sh-goal-line{display:flex;align-items:center;gap:10px}
+
+/* ----- Insights ----- */
+.sh-insight{display:flex;gap:12px;align-items:flex-start;padding:12px 8px;border-radius:10px;cursor:pointer;text-align:left;width:100%;transition:background .2s}
+.sh-insight:hover{background:#f1f6fb}
+.sh-i-ic{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;font-size:17px;flex:none}
+.sh-insight b{display:block;font-size:13px}
+.sh-insight p{font-size:12px;color:#5a75a0;margin-top:2px;line-height:1.5}
+.sh-insight .chev{margin-left:auto;font-size:20px;color:#a9bcd8}
+
+/* ----- Tips ----- */
+.sh-tip{display:flex;gap:12px;margin-top:14px}
+.sh-tip .sh-t-ic{width:40px;height:40px;border-radius:10px;background:#eef4fc;display:grid;place-items:center;font-size:18px;flex:none}
+.sh-tip b{display:block;font-size:12.5px}
+.sh-tip p{font-size:11.5px;color:#5a75a0;line-height:1.5;margin-top:2px}
+
+.sh-modal-list{display:flex;flex-direction:column;gap:10px;max-height:60vh;overflow-y:auto}
+.sh-modal-list .row-item{border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:12.5px;line-height:1.5}
+.sh-modal-list .row-item b{display:block;font-size:13px;margin-bottom:2px}
+.sh-check-line{display:flex;justify-content:space-between;font-size:13px;padding:8px 0;border-bottom:1px solid var(--line)}
+.sh-check-line:last-child{border-bottom:0}
+
+/* ----- Bottom banner ----- */
+.sh-banner{position:relative;background:linear-gradient(120deg,#eaf6ee,#eef7ff);border:1px solid var(--line);border-radius:14px;padding:26px 30px;display:flex;align-items:center;gap:22px;margin-top:4px;overflow:hidden}
+.sh-banner-illus{font-size:44px;background:#fff;border-radius:50%;width:90px;height:90px;display:grid;place-items:center;flex:none;box-shadow:0 4px 10px rgba(20,60,120,.1)}
+.sh-banner-text{flex:1}
+.sh-banner-text h2{font-size:21px;font-weight:600}
+.sh-banner-text p{font-size:13.5px;color:#3b5c8f;margin-top:4px;max-width:520px}
+.sh-banner-cta{background:linear-gradient(180deg,#1a72ea,#0e56c4);color:#fff;font-weight:600;font-size:13.5px;padding:11px 20px;border-radius:22px;white-space:nowrap;transition:filter .2s}
+.sh-banner-cta:hover{filter:brightness(1.1)}
+.sh-banner-sun{position:absolute;right:24px;bottom:-14px;font-size:64px;opacity:.5}
+
+@media (max-width:1180px){
+  .sh-row1,.sh-row2{grid-template-columns:1fr}
+}
+@media (max-width:760px){
+  .sh-summary-body{flex-direction:column}
+  .sh-banner{flex-wrap:wrap}
+  .sh-banner-sun{display:none}
+}

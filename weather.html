@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SolarCare – Weather</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<!-- Shared SolarCare design system (same file used by the Home Page / Solar Health page). Not modified. -->
+<link rel="stylesheet" href="style.css">
+<!-- Page-specific additions, scoped with the w- prefix so other pages are unaffected -->
+<link rel="stylesheet" href="weather.css">
+</head>
+<body>
+
+<!-- ============ SIDEBAR (same structure/classes as the rest of SolarCare) ============ -->
+<aside class="sidebar">
+  <div class="logo">
+	<img src="solarcare-logo.png" alt="SolarCare Logo">
+  </div>
+  <nav aria-label="Main navigation">
+    <button class="nav-item active" data-page="home"><span><i class="fa-solid fa-house"></i></span> Home</button>
+    <button class="nav-item" data-page="solar-health"><span><i class="fa-solid fa-solar-panel"></i></span> Solar Health</button>
+    <button class="nav-item" data-page="weather"><span><i class="fa-solid fa-cloud-sun"></i></span>Weather</button>
+    <button class="nav-item" data-page="planner"><span><i class="fa-solid fa-calendar-days"></i></span>Energy Planner</button>
+    <button class="nav-item" data-page="history"><span><i class="fa-solid fa-clock-rotate-left"></i></span>History</button>
+    <button class="nav-item" data-page="support"><span><i class="fa-solid fa-headset"></i></span>Support</button>
+  </nav>
+  <div class="tagline">Clean Energy.<br>A Brighter Tomorrow.<i></i></div>
+</aside>
+
+<!-- ============ MAIN ============ -->
+<main class="main">
+  <header class="topbar">
+    <div>
+      <h1 id="greeting">Good morning, Team Balingbeng!</h1>
+      <p>Check the current weather and see how it affects your solar panels.</p>
+    </div>
+    <div class="top-actions">
+      <button class="round" id="btnBell" aria-label="Notifications"> <i class="fa-solid fa-bell"></i><b class="dot"></b></button>
+      <button class="round" id="btnAccess" aria-label="Larger text"><i class="fa-solid fa-universal-access"></i></button>
+      <button class="round mic" id="btnVoice" aria-label="Voice alert"><i class="fa-solid fa-microphone"></i></button>
+      <button class="profile" data-page="profile"><span class="avatar"><i class="fa-solid fa-user"></i></span> TBB <small>⌄</small></button>
+    </div>
+  </header>
+
+  <!-- ROW 1: Current weather + Today's forecast -->
+  <section class="row w-row1">
+    <article class="card w-current">
+      <div class="w-cur-top">
+        <div>
+          <h2>Current Weather</h2>
+          <p class="w-loc"><i class="fa-solid fa-location-dot"></i> <span id="locName">Locating…</span>
+            <button id="btnChangeLoc" class="w-chip"><i class="fa-solid fa-magnifying-glass-location"></i> Change location</button></p>
+        </div>
+        <button id="btnRefresh" class="w-refresh" aria-label="Refresh weather"><i class="fa-solid fa-rotate"></i></button>
+      </div>
+
+      <div id="curLoading" class="w-state">Loading weather data…</div>
+      <div id="curError" class="w-state w-error" hidden>Weather data temporarily unavailable.
+        <button id="btnRetry" class="w-chip">Try Again</button></div>
+
+      <div id="curBody" class="w-cur-body" hidden>
+        <div class="w-cur-left">
+          <i class="w-cur-icon" id="curIcon"></i>
+          <div><span class="w-temp" id="curTemp">–</span>
+            <p class="w-cond" id="curCond">–</p>
+            <p class="w-feels">Feels like <span id="curFeels">–</span></p>
+          </div>
+        </div>
+        <div class="w-cur-stats">
+          <span><i class="fa-solid fa-droplet"></i> Humidity<b id="curHumidity">–</b></span>
+          <span><i class="fa-solid fa-wind"></i> Wind<b id="curWind">–</b></span>
+          <span><i class="fa-solid fa-sun-plant-wilt"></i> UV Index<b id="curUv">–</b></span>
+        </div>
+      </div>
+    </article>
+
+    <article class="card w-forecast">
+      <h2>Today's Forecast</h2>
+      <div class="w-hourly" id="hourlyList"><div class="w-state">Loading…</div></div>
+      <div class="w-daily" id="dailyList"></div>
+    </article>
+  </section>
+
+  <!-- ROW 2: Solar output + Alerts + Map -->
+  <section class="row w-row2">
+    <article class="card w-solar">
+      <h2><i class="fa-solid fa-solar-panel"></i> Solar Panel Output Forecast</h2>
+      <p class="w-sub">Based on weather conditions — estimated / demo data, not a real inverter reading.</p>
+      <div class="w-solar-grid" id="solarGrid"></div>
+      <div class="w-note" id="solarNote"><i class="fa-solid fa-circle-info"></i><p>Loading solar estimate…</p></div>
+    </article>
+
+    <article class="card w-alerts">
+      <h2><i class="fa-solid fa-triangle-exclamation"></i> Weather Alerts</h2>
+      <div id="alertsBody"></div>
+      <div class="w-rain-card" id="rainCard" hidden>
+        <i class="fa-solid fa-cloud-showers-heavy"></i>
+        <div><b>Upcoming Rain</b><p id="rainText"></p></div>
+        <i class="fa-solid fa-chevron-right"></i>
+      </div>
+    </article>
+
+    <article class="card w-map">
+      <div class="ch"><h2>Weather Map</h2>
+        <div class="w-tabs">
+          <button class="on" data-map="radar">Radar</button>
+          <button data-map="rain">Rainfall</button>
+          <button data-map="sat">Satellite</button>
+        </div>
+      </div>
+      <div class="w-map-box" id="mapBox">
+        <span class="w-map-city" style="left:20%;top:30%">Quezon City</span>
+        <span class="w-map-city main" style="left:48%;top:55%"><i class="fa-solid fa-location-dot"></i>Marikina City</span>
+        <span class="w-map-city" style="left:76%;top:66%">Antipolo</span>
+      </div>
+      <div class="w-map-legend"><span>Light Rain</span><i></i><span>Heavy Rain</span></div>
+      <p class="w-demo-label">Illustrative demo map — not a live radar feed.</p>
+    </article>
+  </section>
+
+  <!-- BANNER -->
+  <section class="w-banner">
+    <i class="fa-solid fa-lightbulb"></i>
+    <div class="w-banner-text"><b>Did you know?</b>
+      <p id="funFact">Cloudy days can still generate solar power! While output is lower, your panels continue to produce electricity, especially during daylight hours.</p>
+    </div>
+    <button class="w-banner-cta" id="btnLearnMore">Learn More <i class="fa-solid fa-chevron-right"></i></button>
+  </section>
+</main>
+
+<div class="toast" id="toast" role="status"></div>
+
+<!-- Change location modal -->
+<div class="modal" id="locModal" hidden>
+  <div class="modal-box">
+    <h2>Change Location</h2>
+    <label>Search a city<input id="locInput" type="text" placeholder="e.g. Cebu City" autocomplete="off"></label>
+    <div id="locResults" class="w-loc-results"></div>
+    <div class="modal-actions"><button type="button" id="closeLoc">Close</button></div>
+    <small>Location search uses the free Open-Meteo geocoding service.</small>
+  </div>
+</div>
+
+<!-- Learn more modal -->
+<div class="modal" id="learnModal" hidden>
+  <div class="modal-box">
+    <h2>Weather &amp; Your Solar System</h2>
+    <div id="learnBody" class="w-loc-results"></div>
+    <div class="modal-actions"><button type="button" id="closeLearn" class="primary">Close</button></div>
+  </div>
+</div>
+
+<script src="weather.js"></script>
+</body>
+</html>

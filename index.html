@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SolarCare – Home</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+<!-- ============ SIDEBAR ============ -->
+<aside class="sidebar">
+  <div class="logo">
+	<img src="solarcare-logo.png" alt="SolarCare Logo">
+  </div>
+  <nav aria-label="Main navigation">
+    <button class="nav-item active" data-page="home"><span><i class="fa-solid fa-house"></i></span> Home</button>
+    <button class="nav-item" data-page="solar-health"><span><i class="fa-solid fa-solar-panel"></i></span> Solar Health</button>
+    <button class="nav-item" data-page="weather"><span><i class="fa-solid fa-cloud-sun"></i></span>Weather</button>
+    <button class="nav-item" data-page="planner"><span><i class="fa-solid fa-calendar-days"></i></span>Energy Planner</button>
+    <button class="nav-item" data-page="history"><span><i class="fa-solid fa-clock-rotate-left"></i></span>History</button>
+    <button class="nav-item" data-page="support"><span><i class="fa-solid fa-headset"></i></span>Support</button>
+  </nav>
+  <div class="tagline">Clean Energy.<br>A Brighter Tomorrow.<i></i></div>
+</aside>
+
+<!-- ============ MAIN ============ -->
+<main class="main">
+  <header class="topbar">
+    <div>
+      <h1><span id="greeting">Good morning</span>, Team Balingbeng!  <i class="fa-solid fa-sun icon-sun"></i></h1>
+      <p>Here's the simple health check for your solar system.</p>
+    </div>
+    <div class="top-actions">
+      <button class="round" id="btnBell" aria-label="Notifications"> <i class="fa-solid fa-bell"></i><b class="dot"></b></button>
+      <button class="round" id="btnAccess" aria-label="Larger text"><i class="fa-solid fa-universal-access"></i></button>
+      <button class="round mic" id="btnVoice" aria-label="Play voice alert"><i class="fa-solid fa-microphone"></i></button>
+      <button class="profile" data-page="profile"><span class="avatar"><i class="fa-solid fa-user"></i></span> TBB <small><i class="fa-solid fa-chevron-down"></i></small></button>
+    </div>
+  </header>
+
+  <!-- ROW 1 -->
+  <section class="row row1">
+    <article class="card hero" id="cardHealth">
+      <h2>Solar Health Status</h2>
+      <div class="hero-body">
+        <div class="ring" id="ring">
+          <div class="ring-in">
+            <span class="ring-sun"><i class="fa-solid fa-sun"></i></span>
+            <strong id="healthPct">100%</strong>
+            <em id="healthLabel">SYSTEM HEALTHY</em>
+            <span class="check" id="healthIcon">✓</span>
+          </div>
+        </div>
+        <div class="hero-text">
+          <h3 id="healthHeadline">Your system is operating at 100% health.</h3>
+          <p id="healthSub">Your solar panels are working normally today.</p>
+          <small id="energyEstimate">Estimated generation today: – kWh (demo estimate)</small>
+        </div>
+      </div>
+      <div class="panels"></div>
+    </article>
+
+    <article class="card">
+      <h2 class="ch">Weather vs. Hardware <button class="chev" data-page="weather" aria-label="Open Weather">›</button></h2>
+      <div class="wvh">
+        <div class="wvh-col"><div class="tile" id="wIcon"><i class="fa-solid fa-cloud"></i></div><b id="wName">Loading…</b><span class="bad" id="wEffect">–</span></div>
+        <span class="arrow">→</span>
+        <div class="wvh-col"><div class="tile"><i class="fa-solid fa-solar-panel"></i></div><b>Hardware</b><span class="good" id="hwStatus">–</span></div>
+      </div>
+      <div class="note"><span id="noteIcon"><i class="fa-solid fa-cloud-sun"></i></span><p><b id="noteTitle">Checking the weather…</b><br><span id="noteText">Please wait.</span></p></div>
+    </article>
+
+    <article class="card neigh">
+      <h2 class="ch">Your Neighborhood <button class="chev" data-page="neighborhood" aria-label="Open Neighborhood">›</button></h2>
+      <div class="map"><span class="badge" id="regionBadge"><i class="fa-solid fa-cloud-rain"></i> Regional Rain</span><span class="pin"><i class="fa-solid fa-location-dot"></i></span>
+			<!-- HOUSES -->
+			<i class="fa-solid fa-house map-house house-1"></i>
+			<i class="fa-solid fa-house map-house house-2"></i>
+			<i class="fa-solid fa-house map-house house-3"></i>
+			<i class="fa-solid fa-house map-house house-4"></i>
+			<i class="fa-solid fa-house map-house house-5"></i>
+
+			<!-- TREES -->
+			<i class="fa-solid fa-tree map-tree tree-1"></i>
+			<i class="fa-solid fa-tree map-tree tree-2"></i>
+			<i class="fa-solid fa-tree map-tree tree-3"></i>
+			<i class="fa-solid fa-tree map-tree tree-4"></i>
+			<i class="fa-solid fa-tree map-tree tree-5"></i>
+			<i class="fa-solid fa-tree map-tree tree-6"></i>
+      </div>
+      <h3 id="neighHead">Solar generation is down 35% across your neighborhood.</h3>
+      <p id="neighSub">Regional rain is affecting solar homes nearby. <em>(Demo data)</em></p>
+    </article>
+  </section>
+
+  <!-- ROW 2 -->
+  <section class="row row2">
+    <article class="card brief">
+      <h2 class="ch">Morning Briefing <button class="chev" data-page="briefing" aria-label="Open Morning Briefing">›</button></h2>
+      <div class="mic-big"><span><i class="fa-solid fa-microphone"></i></span></div>
+		<button class="play" id="btnPlay">
+			<i class="fa-solid fa-play"></i>	  
+			Play briefing
+		</button>
+      <blockquote id="briefText">“Loading your briefing…”</blockquote>
+      <p class="access"> <i class="fa-solid fa-universal-access"></i> <span>Great for older adults, farmers,<br>busy workers and visually impaired users.</span></p>
+    </article>
+
+    <article class="card glance">
+      <h2 class="ch">Glanceable Health <button class="chev" data-page="glance" aria-label="Open Glanceable Health">›</button></h2>
+      <div class="phone"><div class="screen">
+        <b class="time">9:41</b><span class="date" id="phoneDate">Tue, Apr 22</span>
+        <div class="widget"><b> <i class="fa-solid fa-sun"></i> <span id="phoneStatus">System Healthy</span></b><span id="phoneMatch">Weather Output Match ✓</span><em id="phoneAction">No action needed.</em></div>
+      </div></div>
+      <p>Check your system at a glance — without opening the app.</p>
+    </article>
+
+    <article class="card planner">
+      <h2 class="ch">Energy Activity Planner <button class="chev" data-page="planner" aria-label="Open Energy Planner">›</button></h2>
+      <div class="pl-top"><span class="pl-sun"><i class="fa-solid fa-sun"></i></span><h3 id="plTitle">Best time to use solar energy</h3></div>
+      <div class="pill" id="plWindow">10 AM – 2 PM</div>
+      <p class="center"><b id="plSub">Best time to run heavy equipment.</b></p>
+      <div class="tools">
+        <button data-tool="Bakery ovens"><i class="fa-solid fa-bread-slice"></i><span>Bakery ovens</span></button>
+        <button data-tool="Washing machine"><i class="fa-solid fa-shirt"></i><span>Washing machine</span></button>
+        <button data-tool="Water pump"><i class="fa-solid fa-droplet"></i><span>Water pump</span></button>
+        <button data-tool="Farm equipment"><i class="fa-solid fa-tractor"></i><span>Farm equipment</span></button>
+      </div>
+      <p class="small" id="plNote">Strong solar production is expected during this period.</p>
+    </article>
+
+    <article class="card care">
+      <h2 class="ch">Self-Care &amp; Technician Support <button class="chev" data-page="support" aria-label="Open Support">›</button></h2>
+      <div class="step"><span class="ic"><i class="fa-solid fa-leaf"></i></span><p><small>Step 1</small>Check panels for<br>leaves or debris</p></div>
+      <div class="step"><span class="ic"><i class="fa-solid fa-person"></i></span><p><small>Step 2</small>Send diagnostic report<br>to installer</p></div>
+      <button class="help" id="btnHelp">Get Help ›</button>
+      <button class="diy" data-page="diy">Advanced DIY Mode →</button>
+      <p class="tiny">View technical details (kWh, voltage, amps, inverter status, etc.)</p>
+    </article>
+  </section>
+
+  <!-- ROW 3 -->
+  <section class="row row3">
+    <article class="card chart-card">
+      <h2 class="ch sm">Weather vs. Solar Activity <button class="chev" data-page="history" aria-label="Open History">›</button></h2>
+      <div class="chart" id="chart"></div>
+      <div class="legend"><span><i class="dot-y"></i>Solar production</span><span><i class="dot-b"></i>Weather condition</span>
+        <span class="slide"><button id="dayPrev" aria-label="Previous">‹</button><b>Slide to explore your day</b><button id="dayNext" aria-label="Next">›</button></span></div>
+    </article>
+
+    <div class="alerts" id="alerts"></div>
+
+    <article class="quiet"><b>Quiet when all is well.<br>Alert when it matters.</b><i></i></article>
+  </section>
+
+  <!-- Demo-only control (simulated hardware state) -->
+  <footer class="demo">Demo controls (simulated inverter, not real hardware):
+    <select id="demoState" aria-label="Simulated system state">
+      <option value="normal">Normal</option><option value="low">Low output fault</option><option value="offline">System offline</option>
+    </select>
+    <span id="dataNote">Weather: live data · Solar data: simulated</span>
+  </footer>
+</main>
+
+<div class="toast" id="toast" role="status"></div>
+
+<!-- Support modal -->
+<div class="modal" id="modal" hidden>
+  <form class="modal-box" id="supportForm">
+    <h2>Get Help</h2>
+    <label>Describe the problem<textarea id="supportText" required rows="4" placeholder="e.g. Output is low even though the sky is clear"></textarea></label>
+    <label>Emergency phone number (optional)<input id="supportPhone" type="tel" placeholder="Enter your installer / service number"></label>
+    <div class="modal-actions">
+      <a class="call" id="callLink" href="#"> 
+		<i class="fa-solid fa-phone"></i> 
+		Emergency Call
+	  </a>
+      <button type="button" id="closeModal">Cancel</button>
+      <button type="submit" class="primary">Save request</button>
+    </div>
+    <small>Prototype only: requests are saved in this browser (localStorage) and are not sent to a support team.</small>
+  </form>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

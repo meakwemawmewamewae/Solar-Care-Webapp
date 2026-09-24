@@ -1,0 +1,109 @@
+/* Weather page — scoped additions only. Reuses the tokens already defined
+   in style.css (--navy, --blue, --green, --yellow, --red, --line, --bg). */
+
+.logo-img{width:30px;height:30px;display:block}
+
+.w-row1{grid-template-columns:580fr 420fr}
+.w-row2{grid-template-columns:370fr 300fr 330fr}
+
+/* ----- Current weather ----- */
+.w-current{padding:0;background:linear-gradient(180deg,#8fc4ee 0%,#cfe6f7 55%,#eaf3fb 100%);min-height:320px;display:flex;flex-direction:column}
+.w-cur-top{display:flex;justify-content:space-between;align-items:flex-start;padding:16px 20px 0}
+.w-cur-top h2{font-size:19px;font-weight:600}
+.w-loc{display:flex;align-items:center;gap:8px;font-size:13px;color:#1b4fb0;margin-top:4px;flex-wrap:wrap}
+.w-chip{border:1px solid #bcd6f2;background:#fff;border-radius:16px;padding:4px 10px;font-size:11.5px;color:#1565d8;display:inline-flex;align-items:center;gap:6px;transition:background .2s}
+.w-chip:hover{background:#eef4fc}
+.w-refresh{width:40px;height:40px;border-radius:50%;background:#fff;display:grid;place-items:center;font-size:16px;color:#1565d8;box-shadow:0 2px 6px rgba(20,60,120,.12);transition:transform .3s}
+.w-refresh:hover{transform:rotate(60deg)}
+.w-refresh.spin i{animation:w-spin 1s linear infinite}
+@keyframes w-spin{to{transform:rotate(360deg)}}
+
+.w-state{padding:40px 20px;text-align:center;color:#3b5c8f;font-size:14px}
+.w-error{color:#a83232}
+.w-cur-body{display:flex;flex-direction:column;gap:22px;padding:6px 20px 20px;flex:1;justify-content:flex-end}
+.w-cur-left{display:flex;align-items:center;gap:18px}
+.w-cur-icon{font-size:74px;color:#f5b800;text-shadow:0 4px 10px rgba(0,0,0,.08)}
+.w-temp{font-size:52px;font-weight:700;line-height:1}
+.w-cond{font-size:18px;font-weight:600;margin-top:4px}
+.w-feels{font-size:13px;color:#1b4fb0;margin-top:2px}
+.w-cur-stats{display:flex;gap:26px;background:rgba(255,255,255,.55);border-radius:10px;padding:12px 16px;backdrop-filter:blur(2px)}
+.w-cur-stats span{display:flex;flex-direction:column;gap:4px;font-size:12px;color:#1b4fb0}
+.w-cur-stats i{color:#1565d8}
+.w-cur-stats b{font-size:14px;color:var(--navy);font-weight:600}
+
+/* ----- Hourly / daily forecast ----- */
+.w-hourly{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:14px}
+.w-hour{text-align:center;background:#f4f8fd;border-radius:10px;padding:12px 4px;font-size:12px}
+.w-hour i{font-size:20px;color:#f5b800;margin:6px 0}
+.w-hour b{display:block;font-size:14px;margin-top:2px}
+.w-hour .rain{color:#1565d8;font-size:11px;margin-top:4px;display:flex;align-items:center;justify-content:center;gap:3px}
+.w-daily{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:14px;padding-top:14px;border-top:1px solid var(--line)}
+.w-day{text-align:center;font-size:11.5px}
+.w-day b{display:block;font-size:12.5px}
+.w-day i{font-size:19px;color:#f5b800;margin:8px 0 4px;display:block}
+.w-day .temps{font-size:12px}
+.w-day .temps .max{font-weight:600}
+.w-day .temps .min{color:#7d93b5}
+.w-day .rain{color:#1565d8;margin-top:3px}
+
+/* ----- Solar output ----- */
+.w-sub{font-size:12px;color:#5a75a0;margin-top:2px}
+.w-solar-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:14px}
+.w-solar-cell{border:1px solid var(--line);border-radius:10px;padding:12px 6px;text-align:center}
+.w-solar-cell i{font-size:20px;color:#f5b800}
+.w-solar-cell .span{font-size:11px;color:#5a75a0;display:block;margin-top:6px}
+.w-solar-cell .lvl{font-size:12px;font-weight:600;margin-top:8px}
+.w-solar-cell .pct{font-size:11.5px;color:#5a75a0}
+.w-note{display:flex;gap:10px;align-items:flex-start;background:#eef4fc;border-radius:8px;padding:10px 12px;margin-top:14px;font-size:12px;line-height:1.5;color:#1b4fb0}
+.w-note i{margin-top:2px;color:#1565d8}
+
+/* ----- Alerts ----- */
+.w-alerts .ok-box{background:#eef8f0;border:1px solid #a9dcb3;border-radius:10px;padding:16px;text-align:center;margin-top:12px}
+.w-alerts .ok-box i{font-size:26px;color:var(--green)}
+.w-alerts .ok-box b{display:block;margin-top:8px;font-size:14px;color:#137a2b}
+.w-alerts .ok-box p{font-size:12px;color:#3b5c8f;margin-top:2px}
+.w-alert-item{display:flex;gap:12px;align-items:flex-start;background:#fdf6e3;border:1px solid #f1d78a;border-radius:10px;padding:12px;margin-top:10px;font-size:12px}
+.w-alert-item.bad{background:#fdeeee;border-color:#f1b8b8}
+.w-alert-item i{font-size:17px;color:#a87500;margin-top:1px}
+.w-alert-item.bad i{color:#d93a3a}
+.w-alert-item b{display:block;font-size:13px}
+.w-rain-card{display:flex;gap:12px;align-items:center;background:#eef4fc;border-radius:10px;padding:12px;margin-top:12px;font-size:12px}
+.w-rain-card i:first-child{font-size:20px;color:#1565d8}
+.w-rain-card b{font-size:13px;display:block}
+.w-rain-card i:last-child{margin-left:auto;color:#8095b5}
+
+/* ----- Map ----- */
+.w-map .ch{align-items:center}
+.w-tabs{display:flex;gap:6px}
+.w-tabs button{font-size:11.5px;padding:6px 12px;border-radius:16px;color:#3b5c8f;background:#eef2f8;transition:background .2s,color .2s}
+.w-tabs button.on{background:var(--blue);color:#fff}
+.w-map-box{position:relative;height:190px;border-radius:10px;margin-top:12px;background:linear-gradient(120deg,#dce9f5,#c9e3d8 45%,#e7d9f5);overflow:hidden}
+.w-map-box::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 30% 30%,rgba(120,200,255,.35),transparent 40%),radial-gradient(circle at 70% 70%,rgba(140,220,160,.3),transparent 45%)}
+.w-map-city{position:absolute;font-size:11px;font-weight:500;color:#3b5c8f;background:rgba(255,255,255,.75);padding:2px 6px;border-radius:6px}
+.w-map-city.main{color:#fff;background:#1565d8;display:flex;align-items:center;gap:4px;font-weight:600}
+.w-map-legend{display:flex;align-items:center;gap:10px;font-size:10.5px;color:#5a75a0;margin-top:10px}
+.w-map-legend i{flex:1;height:6px;border-radius:4px;background:linear-gradient(90deg,#bfe6ff,#5ad1a0,#f5e04a,#f08a4a,#c14ad1)}
+.w-demo-label{font-size:10.5px;color:#8095b5;margin-top:8px}
+
+/* ----- Banner ----- */
+.w-banner{display:flex;align-items:center;gap:18px;background:linear-gradient(120deg,#e9f2fd,#eef7ff);border:1px solid var(--line);border-radius:14px;padding:20px 26px;margin-top:16px}
+.w-banner i{font-size:26px;color:#f5b800;flex:none}
+.w-banner-text{flex:1}
+.w-banner-text b{font-size:15px}
+.w-banner-text p{font-size:12.5px;color:#3b5c8f;margin-top:3px;max-width:640px}
+.w-banner-cta{border:1px solid var(--blue);color:var(--blue);border-radius:20px;padding:9px 16px;font-size:12.5px;font-weight:500;white-space:nowrap;display:flex;align-items:center;gap:6px;transition:background .2s}
+.w-banner-cta:hover{background:#eef4fc}
+
+.w-loc-results{display:flex;flex-direction:column;gap:8px;max-height:50vh;overflow-y:auto}
+.w-loc-results button.res{border:1px solid var(--line);border-radius:8px;padding:8px 10px;text-align:left;font-size:13px}
+.w-loc-results button.res:hover{background:#f1f6fb}
+.w-loc-results .row-item{border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:12.5px;line-height:1.5}
+.w-loc-results .row-item b{display:block;font-size:13px;margin-bottom:2px}
+
+@media (max-width:1180px){
+  .w-row1,.w-row2{grid-template-columns:1fr}
+}
+@media (max-width:760px){
+  .w-hourly,.w-daily,.w-solar-grid{grid-template-columns:repeat(3,1fr);overflow-x:auto}
+  .w-cur-stats{flex-wrap:wrap;gap:14px}
+}

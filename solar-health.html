@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SolarCare – Solar Health</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="solar-health.css">
+</head>
+<body>
+
+<!-- ============ SIDEBAR (same structure/classes as Home Page) ============ -->
+<aside class="sidebar">
+  <div class="logo">
+	<img src="solarcare-logo.png" alt="SolarCare Logo">
+  </div>
+  <nav aria-label="Main navigation">
+    <button class="nav-item active" data-page="home"><span><i class="fa-solid fa-house"></i></span> Home</button>
+    <button class="nav-item" data-page="solar-health"><span><i class="fa-solid fa-solar-panel"></i></span> Solar Health</button>
+    <button class="nav-item" data-page="weather"><span><i class="fa-solid fa-cloud-sun"></i></span>Weather</button>
+    <button class="nav-item" data-page="planner"><span><i class="fa-solid fa-calendar-days"></i></span>Energy Planner</button>
+    <button class="nav-item" data-page="history"><span><i class="fa-solid fa-clock-rotate-left"></i></span>History</button>
+    <button class="nav-item" data-page="support"><span><i class="fa-solid fa-headset"></i></span>Support</button>
+  </nav>
+  <div class="tagline">Clean Energy.<br>A Brighter Tomorrow.<i></i></div>
+</aside>
+
+<!-- ============ MAIN ============ -->
+<main class="main">
+  <header class="topbar">
+    <div>
+      <h1>Your Solar Health Matters</h1>
+      <p>Monitor your solar system, understand its performance, and keep your energy production on track.</p>
+    </div>
+    <div class="top-actions">
+      <button class="round" id="btnBell" aria-label="Notifications"> <i class="fa-solid fa-bell"></i><b class="dot"></b></button>
+      <button class="round" id="btnAccess" aria-label="Larger text"><i class="fa-solid fa-universal-access"></i></button>
+      <button class="round mic" id="btnVoice" aria-label="Voice alert"><i class="fa-solid fa-microphone"></i></button>
+      <button class="profile" data-page="profile"><span class="avatar"><i class="fa-solid fa-user"></i></span> TBB <small>⌄</small></button>
+    </div>
+  </header>
+
+  <!-- ROW 1: Summary + Weekly chart -->
+  <section class="row sh-row1">
+    <article class="card sh-summary">
+      <div class="ch"><h2>Today's Solar Health Score</h2><span class="sh-date" id="todayDate"></span></div>
+      <div class="sh-summary-body">
+        <div class="ring" id="ring">
+          <div class="ring-in">
+            <span class="ring-sun" id="ringIcon">
+				<i class="fa-solid fa-sun"></i>
+			</span>
+            <strong id="scorePct">92</strong>
+            <small class="sh-of100">/ 100</small>
+            <em id="scoreLabel">Healthy</em>
+            <span class="check" id="scoreIcon">✓</span>
+          </div>
+        </div>
+        <div class="sh-metrics">
+          <div class="sh-metric-row">
+			<span class="sh-m-icon" style="background:#fff4d6">
+				<i class="fa-solid fa-sun"></i>
+			</span>
+            <div class="sh-m-info"><b>Solar Output</b><span id="mOutputVal">3.8 kW / 4.0 kW expected</span>
+              <div class="sh-bar"><div class="sh-bar-fill" id="mOutputBar" style="background:#f5b800"></div></div></div>
+          </div>
+          <div class="sh-metric-row">
+            <span class="sh-m-icon" style="background:#e3f3e6">
+				<i class="fa-solid fa-gauge-high"></i>
+			</span>
+            <div class="sh-m-info"><b>System Efficiency</b><span id="mEffVal">95%</span>
+              <div class="sh-bar"><div class="sh-bar-fill" id="mEffBar" style="background:#1f9d3a"></div></div></div>
+          </div>
+          <div class="sh-metric-row">
+            <span class="sh-m-icon" style="background:#fdeaea">
+				<i class="fa-solid fa-temperature-half"></i>
+			</span>
+            <div class="sh-m-info"><b>Panel Temperature</b><span id="mTempVal">34°C</span>
+              <div class="sh-bar"><div class="sh-bar-fill" id="mTempBar" style="background:#e06a4d"></div></div></div>
+          </div>
+          <div class="sh-metric-row">
+            <span class="sh-m-icon" style="background:#e6effd">
+				<i class="fa-solid fa-bolt"></i>
+			</span>
+            <div class="sh-m-info"><b>Energy Generated</b><span id="mEnergyVal">12.6 kWh</span>
+              <div class="sh-bar"><div class="sh-bar-fill" id="mEnergyBar" style="background:#1565d8"></div></div></div>
+          </div>
+        </div>
+      </div>
+      <p class="sh-summary-msg" id="summaryMsg">Your solar system is operating normally.</p>
+      <p class="sh-status-line">System Status: <b id="statusVal">Normal</b> · Weather: <span id="statusWeather">Loading…</span></p>
+    </article>
+
+    <article class="card sh-chart-card">
+      <div class="ch"><h2><span class="sh-runner">
+			<i class="fa-solid fa-chart-line"></i>
+		</span> Weekly Solar Activity</h2>
+        <div class="sh-tabs" role="tablist">
+          <button class="on" data-tab="energy" role="tab" aria-selected="true">Energy Generated</button>
+          <button data-tab="output" role="tab" aria-selected="false">Solar Output</button>
+          <button data-tab="efficiency" role="tab" aria-selected="false">Efficiency</button>
+        </div>
+      </div>
+      <div class="sh-bars" id="weekChart"></div>
+      <p class="sh-demo-label">Demo weekly data, adjusted for today's weather.</p>
+    </article>
+  </section>
+
+  <!-- ROW 2: Goals / Insights / Tips -->
+  <section class="row sh-row2">
+    <article class="card sh-goals">
+      <div class="ch"><h2><span class="sh-target">
+			<i class="fa-solid fa-bullseye"></i>
+		</span> Solar Health Goals</h2><button class="sh-pill-btn" id="btnManageGoals">Manage Goals</button></div>
+      <div id="goalsList"></div>
+    </article>
+
+    <article class="card sh-insights">
+      <span class="sh-bulb">
+			<i class="fa-solid fa-lightbulb"></i>
+		</span> Solar Health Insights</h2><button class="sh-pill-btn" id="btnViewAll">View All</button></div>
+      <div id="insightsList"></div>
+    </article>
+
+    <article class="card sh-tips">
+      <span class="sh-leaf">
+			<i class="fa-solid fa-leaf"></i>
+		</span> Solar Tips</h2><button class="sh-pill-btn" id="btnSeeMore">See More</button></div>
+      <div id="tipsList"></div>
+    </article>
+  </section>
+
+  <!-- BOTTOM BANNER -->
+  <section class="sh-banner">
+    <div class="sh-banner-illus" aria-hidden="true">
+		<i class="fa-solid fa-screwdriver-wrench"></i>
+	</div>
+    <div class="sh-banner-text">
+      <h2>Keep Your Solar System Healthy</h2>
+      <p>Small checks today can help your solar system perform efficiently tomorrow.</p>
+    </div>
+    <button class="sh-banner-cta" id="btnSystemCheck">Run Solar System Check ›</button>
+  </section>
+
+  <footer class="demo">Demo controls (simulated inverter, not real hardware):
+    <select id="demoState" aria-label="Simulated system state">
+      <option value="normal">Normal</option><option value="low">Low output fault</option><option value="offline">System offline</option>
+    </select>
+    <span id="dataNote">Weather: live data · Solar data: simulated</span>
+  </footer>
+</main>
+
+<div class="toast" id="toast" role="status"></div>
+
+<!-- Manage Goals modal -->
+<div class="modal" id="goalsModal" hidden>
+  <form class="modal-box" id="goalsForm">
+    <h2>Manage Solar Health Goals</h2>
+    <label>Target system efficiency (%)<input id="goalEff" type="number" min="1" max="100" required></label>
+    <label>Target daily generation (kWh)<input id="goalGen" type="number" min="1" max="100" step="0.1" required></label>
+    <label>Target system availability (%)<input id="goalAvail" type="number" min="1" max="100" required></label>
+    <label>Target output consistency (%)<input id="goalCons" type="number" min="1" max="100" required></label>
+    <div class="modal-actions">
+      <button type="button" id="closeGoals">Cancel</button>
+      <button type="submit" class="primary">Save goals</button>
+    </div>
+    <small>Saved in this browser (localStorage) and kept after refresh.</small>
+  </form>
+</div>
+
+<!-- View All insights modal -->
+<div class="modal" id="insightsModal" hidden>
+  <div class="modal-box">
+    <h2>All Solar Health Insights</h2>
+    <div id="insightsAll" class="sh-modal-list"></div>
+    <div class="modal-actions"><button type="button" id="closeInsights" class="primary">Close</button></div>
+  </div>
+</div>
+
+<!-- See More tips modal -->
+<div class="modal" id="tipsModal" hidden>
+  <div class="modal-box">
+    <h2>All Solar Tips</h2>
+    <div id="tipsAll" class="sh-modal-list"></div>
+    <div class="modal-actions"><button type="button" id="closeTips" class="primary">Close</button></div>
+  </div>
+</div>
+
+<!-- Solar System Check modal -->
+<div class="modal" id="checkModal" hidden>
+  <div class="modal-box">
+    <h2>Solar System Check</h2>
+    <div id="checkBody" class="sh-modal-list"></div>
+    <div class="modal-actions"><button type="button" id="closeCheck" class="primary">Close</button></div>
+  </div>
+</div>
+
+<script src="solar-health.js"></script>
+</body>
+</html>
